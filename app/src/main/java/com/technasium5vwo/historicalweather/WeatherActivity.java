@@ -8,8 +8,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class WeatherActivity extends ActionBarActivity {
@@ -33,11 +35,17 @@ public class WeatherActivity extends ActionBarActivity {
 
     }
     private void addDrawerItems() {
-        String[] osArray = {"Android", "iOS", "Windows", "OS X", "Linux"};
-        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, osArray);
+        String[] osArray = { "Android", "iOS", "Windows", "OS X", "Linux" };
+        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
-    }
 
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(WeatherActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 
 
